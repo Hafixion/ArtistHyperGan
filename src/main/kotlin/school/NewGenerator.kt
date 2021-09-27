@@ -46,21 +46,21 @@ val genLayers = arrayOf(
 )
 
 val disLayers = arrayOf(
-    convLayer(8, 5, 2, activation = Activation.RELU, channels = 3, convolutionMode = ConvolutionMode.Same),
+    convLayer(4, 3, 2, activation = Activation.RELU, channels = 3, convolutionMode = ConvolutionMode.Same),
 
-    dropOutLayer(0.4, updater=null),
-
-    poolingLayer(SubsamplingLayer.PoolingType.MAX),
-
-    convLayer(16, 5, 2, activation = Activation.RELU, convolutionMode = ConvolutionMode.Same),
-
-    dropOutLayer(0.4, updater=null),
+    dropOutLayer(0.6, updater=null),
 
     poolingLayer(SubsamplingLayer.PoolingType.MAX),
 
-    convLayer(32, 5, 2, activation = Activation.RELU, convolutionMode = ConvolutionMode.Same),
+    convLayer(8, 3, 2, activation = Activation.RELU, convolutionMode = ConvolutionMode.Same),
 
-    dropOutLayer(0.4, updater=null),
+    dropOutLayer(0.6, updater=null),
+
+    poolingLayer(SubsamplingLayer.PoolingType.MAX),
+
+    convLayer(16, 3, 2, activation = Activation.RELU, convolutionMode = ConvolutionMode.Same),
+
+    dropOutLayer(0.6, updater=null),
 
     poolingLayer(SubsamplingLayer.PoolingType.MAX),
 
@@ -68,21 +68,21 @@ val disLayers = arrayOf(
 )
 
 val frozenDisLayers = arrayOf(
-    convLayer(8, 5, 2, activation = Activation.RELU, channels = 3, convolutionMode = ConvolutionMode.Same, updater = Sgd.builder().learningRate(0.0).build()),
+    convLayer(4, 3, 2, activation = Activation.RELU, channels = 3, convolutionMode = ConvolutionMode.Same, updater = Sgd.builder().learningRate(0.0).build()),
 
     poolingLayer(SubsamplingLayer.PoolingType.MAX),
 
-    dropOutLayer(0.4, updater=null),
+    dropOutLayer(0.6, updater=null),
 
-    convLayer(16, 5, 2, activation = Activation.RELU, convolutionMode = ConvolutionMode.Same, updater = Sgd.builder().learningRate(0.0).build()),
+    convLayer(8, 3, 2, activation = Activation.RELU, convolutionMode = ConvolutionMode.Same, updater = Sgd.builder().learningRate(0.0).build()),
 
-    dropOutLayer(0.4, updater=null),
+    dropOutLayer(0.6, updater=null),
 
     poolingLayer(SubsamplingLayer.PoolingType.MAX),
 
-    convLayer(32, 5, 2, activation = Activation.RELU, convolutionMode = ConvolutionMode.Same, updater = Sgd.builder().learningRate(0.0).build()),
+    convLayer(16, 3, 2, activation = Activation.RELU, convolutionMode = ConvolutionMode.Same, updater = Sgd.builder().learningRate(0.0).build()),
 
-    dropOutLayer(0.4, updater=null),
+    dropOutLayer(0.6, updater=null),
 
     poolingLayer(SubsamplingLayer.PoolingType.MAX),
 
