@@ -96,6 +96,8 @@ fun getGenerator(): MultiLayerConfiguration {
         updater(Adam(0.002))
         weightInit(WeightInit.XAVIER)
         activation(Activation.IDENTITY)
+        gradientNormalization(GradientNormalization.RenormalizeL2PerLayer)
+        gradientNormalizationThreshold(100.0)
     }.list().apply {
         inputType = InputType.convolutional(7, 7, 32)
 
@@ -109,6 +111,8 @@ fun getDiscriminator(): MultiLayerConfiguration {
         updater(Adam(0.002))
         weightInit(WeightInit.XAVIER)
         activation(Activation.IDENTITY)
+        gradientNormalization(GradientNormalization.RenormalizeL2PerLayer)
+        gradientNormalizationThreshold(100.0)
     }.list().apply {
         inputType = InputType.convolutional(112, 112, 3)
 
