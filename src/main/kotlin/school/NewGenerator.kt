@@ -29,20 +29,20 @@ import kotlin.math.roundToInt
 
 val genLayers = arrayOf(
     deconvLayer(
-        32, 5, 2, 0, Activation.SELU, convolutionMode = ConvolutionMode.Same,
+        32, 3, 2, 0, Activation.SELU, convolutionMode = ConvolutionMode.Same,
         channels = 64
     ),
     batchLayer(),
 
-    deconvLayer(32, 5, 2, 0, Activation.SELU, convolutionMode = ConvolutionMode.Same),
+    deconvLayer(16, 3, 2, 0, Activation.SELU, convolutionMode = ConvolutionMode.Same),
     batchLayer(),
 
-    deconvLayer(16, 5, 2, 0, Activation.SELU, convolutionMode = ConvolutionMode.Same),
+    deconvLayer(8, 3, 2, 0, Activation.SELU, convolutionMode = ConvolutionMode.Same),
     batchLayer(),
 
-    deconvLayer(8, 5, 2, 0, Activation.SELU, convolutionMode = ConvolutionMode.Same),
+    deconvLayer(4, 3, 2, 0, Activation.SELU, convolutionMode = ConvolutionMode.Same),
     batchLayer(),
-    deconvLayer(3, 5, 1, 0, Activation.TANH, convolutionMode = ConvolutionMode.Same)
+    deconvLayer(3, 3, 1, 0, Activation.TANH, convolutionMode = ConvolutionMode.Same)
 )
 
 val disLayers = arrayOf(
