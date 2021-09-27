@@ -44,41 +44,41 @@ val genLayers = arrayOf(
 )
 
 val disLayers = arrayOf(
-    convLayer(8, 5, 2, activation = Activation.LEAKYRELU, channels = 3, convolutionMode = ConvolutionMode.Same),
+    convLayer(8, 5, 2, activation = Activation.RELU, channels = 3, convolutionMode = ConvolutionMode.Same),
 
-    dropOutLayer(0.3, updater=null),
+    dropOutLayer(0.4, updater=null),
 
-    convLayer(16, 5, 2, activation = Activation.LEAKYRELU, convolutionMode = ConvolutionMode.Same),
+    convLayer(16, 5, 2, activation = Activation.RELU, convolutionMode = ConvolutionMode.Same),
 
-    dropOutLayer(0.3, updater=null),
+    dropOutLayer(0.4, updater=null),
 
-    convLayer(32, 5, 2, activation = Activation.LEAKYRELU, convolutionMode = ConvolutionMode.Same),
+    convLayer(32, 5, 2, activation = Activation.RELU, convolutionMode = ConvolutionMode.Same),
 
-    dropOutLayer(0.3, updater=null),
+    dropOutLayer(0.4, updater=null),
 
-    convLayer(64, 5, 2, activation = Activation.LEAKYRELU, convolutionMode = ConvolutionMode.Same),
+    convLayer(64, 5, 2, activation = Activation.RELU, convolutionMode = ConvolutionMode.Same),
 
-    dropOutLayer(0.3, updater=null),
+    dropOutLayer(0.4, updater=null),
 
     outputLayer(1, Activation.SIGMOID, LossFunctions.LossFunction.XENT, null),
 )
 
 val frozenDisLayers = arrayOf(
-    convLayer(8, 5, 2, activation = Activation.LEAKYRELU, channels = 3, convolutionMode = ConvolutionMode.Same, updater = Sgd.builder().learningRate(0.0).build()),
+    convLayer(8, 5, 2, activation = Activation.RELU, channels = 3, convolutionMode = ConvolutionMode.Same, updater = Sgd.builder().learningRate(0.0).build()),
 
-    dropOutLayer(0.3, updater=null),
+    dropOutLayer(0.4, updater=null),
 
-    convLayer(16, 5, 2, activation = Activation.LEAKYRELU, convolutionMode = ConvolutionMode.Same, updater = Sgd.builder().learningRate(0.0).build()),
+    convLayer(16, 5, 2, activation = Activation.RELU, convolutionMode = ConvolutionMode.Same, updater = Sgd.builder().learningRate(0.0).build()),
 
-    dropOutLayer(0.3, updater=null),
+    dropOutLayer(0.4, updater=null),
 
-    convLayer(32, 5, 2, activation = Activation.LEAKYRELU, convolutionMode = ConvolutionMode.Same, updater = Sgd.builder().learningRate(0.0).build()),
+    convLayer(32, 5, 2, activation = Activation.RELU, convolutionMode = ConvolutionMode.Same, updater = Sgd.builder().learningRate(0.0).build()),
 
-    dropOutLayer(0.3, updater=null),
+    dropOutLayer(0.4, updater=null),
 
-    convLayer(64, 5, 2, activation = Activation.LEAKYRELU, convolutionMode = ConvolutionMode.Same, updater = Sgd.builder().learningRate(0.0).build()),
+    convLayer(64, 5, 2, activation = Activation.RELU, convolutionMode = ConvolutionMode.Same, updater = Sgd.builder().learningRate(0.0).build()),
 
-    dropOutLayer(0.3, updater=null),
+    dropOutLayer(0.4, updater=null),
 
     outputLayer(1, Activation.SIGMOID, LossFunctions.LossFunction.XENT, updater = Sgd.builder().learningRate(0.0).build()),
 )
