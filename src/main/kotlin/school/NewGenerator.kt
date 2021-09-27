@@ -9,6 +9,7 @@ import org.deeplearning4j.nn.conf.GradientNormalization
 import org.deeplearning4j.nn.conf.MultiLayerConfiguration
 import org.deeplearning4j.nn.conf.NeuralNetConfiguration
 import org.deeplearning4j.nn.conf.inputs.InputType
+import org.deeplearning4j.nn.conf.layers.SubsamplingLayer
 import org.deeplearning4j.nn.conf.layers.misc.FrozenLayerWithBackprop
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork
 import org.deeplearning4j.nn.weights.WeightInit
@@ -19,6 +20,7 @@ import org.nd4j.linalg.learning.config.Adam
 import org.nd4j.linalg.learning.config.Sgd
 import org.nd4j.linalg.lossfunctions.LossFunctions
 import outputLayer
+import poolingLayer
 import java.awt.Color
 import java.awt.image.BufferedImage
 import java.io.File
@@ -56,9 +58,7 @@ val disLayers = arrayOf(
 
     dropOutLayer(0.4, updater=null),
 
-    convLayer(64, 5, 2, activation = Activation.RELU, convolutionMode = ConvolutionMode.Same),
-
-    dropOutLayer(0.4, updater=null),
+    poolingLayer(SubsamplingLayer.PoolingType.MAX),
 
     outputLayer(1, Activation.SIGMOID, LossFunctions.LossFunction.XENT, null),
 )
