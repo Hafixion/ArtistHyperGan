@@ -18,53 +18,54 @@ import javax.swing.JPanel
 
 
 fun main() {
-    val gen = MultiLayerNetwork(getGenerator())
-    val dis = MultiLayerNetwork(getDiscriminator())
-    val gan = MultiLayerNetwork(getGan())
+    try {
+        val gen = MultiLayerNetwork(getGenerator())
+        val dis = MultiLayerNetwork(getDiscriminator())
+        val gan = MultiLayerNetwork(getGan())
 
-    gen.init()
-    dis.init()
-    gan.init()
+        gen.init()
+        dis.init()
+        gan.init()
 
 //    val frame: JFrame = GANVisualizationUtils.initFrame()
 //    val numSamples = 12
 //    val panel: JPanel = GANVisualizationUtils.initPanel(frame, numSamples)
 
-    dis.setListeners(PerformanceListener(1, true))
-    gan.setListeners(PerformanceListener(1, true))
+        dis.setListeners(PerformanceListener(1, true))
+        gan.setListeners(PerformanceListener(1, true))
 
-    val batchSize = 250
-    val dataSetList = mutableListOf<INDArray>()
+        val batchSize = 250
+        val dataSetList = mutableListOf<INDArray>()
 
-    // creating the dataset
-    repeat(20) {
-        val batch = mutableListOf<INDArray>()
-        repeat(batchSize) { batch.add(generateRGBImage(112)) }
-        dataSetList.add(getBatchDataSetFromTensors(batch))
-    }
-    val dataSet = dataSetList.toList()
+        // creating the dataset
+        repeat(20) {
+            val batch = mutableListOf<INDArray>()
+            repeat(batchSize) { batch.add(generateRGBImage(112)) }
+            dataSetList.add(getBatchDataSetFromTensors(batch))
+        }
+        val dataSet = dataSetList.toList()
 
-    var j = 0
-    // GANVisualizationUtils.visualize(dataSet.toTypedArray(), frame, panel)
-    while (true) {
-        j++
-        val real = dataSet.random()
+        var j = 0
+        // GANVisualizationUtils.visualize(dataSet.toTypedArray(), frame, panel)
+        while (true) {
+            j++
+            val real = dataSet.random()
 
-        val fakeIn = Nd4j.randn(batchSize.toLong(), 64, 7, 7)
-        val fake = gen.output(fakeIn)
+            val fakeIn = Nd4j.randn(batchSize.toLong(), 64, 7, 7)
+            val fake = gen.output(fakeIn)
 
-        val realSet = DataSet(real, Nd4j.ones(batchSize, 1))
-        val fakeSet = DataSet(fake, Nd4j.zeros(batchSize, 1))
+            val realSet = DataSet(real, Nd4j.ones(batchSize, 1))
+            val fakeSet = DataSet(fake, Nd4j.zeros(batchSize, 1))
 
-        val data = DataSet.merge(listOf(realSet, fakeSet))
+            val data = DataSet.merge(listOf(realSet, fakeSet))
 
-        dis.fit(data)
+            dis.fit(data)
 
-        updateGanFromDis(gen, dis, gan)
+            updateGanFromDis(gen, dis, gan)
 
-        gan.fit(DataSet(Nd4j.randn(batchSize.toLong(), 64, 7, 7), Nd4j.ones(batchSize, 1)))
+            gan.fit(DataSet(Nd4j.randn(batchSize.toLong(), 64, 7, 7), Nd4j.ones(batchSize, 1)))
 
-        copyParamsToGan(gen, dis, gan)
+            copyParamsToGan(gen, dis, gan)
 
 //        println("Iteration $j Visualizing...")
 //        val samples = arrayOfNulls<INDArray>(numSamples)
@@ -75,8 +76,9 @@ fun main() {
 //        }
 //        GANVisualizationUtils.visualize(samples, frame, panel)
 
-        ModelSerializer.writeModel(gen, "gen.zip", true)
-        ModelSerializer.writeModel(dis, "dis.zip", true)
-        ModelSerializer.writeModel(gan, "gan.zip", true)
-    }
+            ModelSerializer.writeModel(gen, "gen.zip", true)
+            ModelSerializer.writeModel(dis, "dis.zip", true)
+            ModelSerializer.writeModel(gan, "gan.zip", true)
+        }
+    } catch (e: Exception) { e.printStackTrace() }
 }
