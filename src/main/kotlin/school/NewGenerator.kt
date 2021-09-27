@@ -30,7 +30,7 @@ import kotlin.math.roundToInt
 val genLayers = arrayOf(
     deconvLayer(
         32, 3, 2, 0, Activation.SELU, convolutionMode = ConvolutionMode.Same,
-        channels = 64
+        channels = 32
     ),
     batchLayer(),
 
@@ -42,6 +42,7 @@ val genLayers = arrayOf(
 
     deconvLayer(4, 3, 2, 0, Activation.SELU, convolutionMode = ConvolutionMode.Same),
     batchLayer(),
+
     deconvLayer(3, 3, 1, 0, Activation.TANH, convolutionMode = ConvolutionMode.Same)
 )
 
@@ -58,7 +59,7 @@ val disLayers = arrayOf(
 
     poolingLayer(SubsamplingLayer.PoolingType.MAX),
 
-    convLayer(16, 3, 2, activation = Activation.RELU, convolutionMode = ConvolutionMode.Same),
+    convLayer(8, 3, 2, activation = Activation.RELU, convolutionMode = ConvolutionMode.Same),
 
     dropOutLayer(0.6, updater=null),
 
@@ -80,7 +81,7 @@ val frozenDisLayers = arrayOf(
 
     poolingLayer(SubsamplingLayer.PoolingType.MAX),
 
-    convLayer(16, 3, 2, activation = Activation.RELU, convolutionMode = ConvolutionMode.Same, updater = Sgd.builder().learningRate(0.0).build()),
+    convLayer(8, 3, 2, activation = Activation.RELU, convolutionMode = ConvolutionMode.Same, updater = Sgd.builder().learningRate(0.0).build()),
 
     dropOutLayer(0.6, updater=null),
 
@@ -96,7 +97,7 @@ fun getGenerator(): MultiLayerConfiguration {
         weightInit(WeightInit.XAVIER)
         activation(Activation.IDENTITY)
     }.list().apply {
-        inputType = InputType.convolutional(7, 7, 64)
+        inputType = InputType.convolutional(7, 7, 32)
 
         genLayers.forEach { layer(it) }
     }.build()
@@ -122,7 +123,7 @@ fun getGan(): MultiLayerConfiguration {
         weightInit(WeightInit.XAVIER)
         activation(Activation.IDENTITY)
     }.list().apply {
-        inputType = InputType.convolutional(7, 7, 64)
+        inputType = InputType.convolutional(7, 7, 32)
 
         genLayers.forEach { layer(it) }
         frozenDisLayers.forEach { layer(it) }

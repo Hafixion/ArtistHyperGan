@@ -1,5 +1,0 @@
-C:\Programming\ArtistHyperGan\ArtistHyperGan\src\main\kotlin\school\NewGenerator.kt
-C:\Programming\ArtistHyperGan\ArtistHyperGan\src\main\kotlin\NetworkExtensionFunctions.kt
-C:\Programming\ArtistHyperGan\ArtistHyperGan\src\main\kotlin\school\NewMain.kt
-C:\Programming\ArtistHyperGan\ArtistHyperGan\src\main\kotlin\Generator.kt
-C:\Programming\ArtistHyperGan\ArtistHyperGan\src\main\kotlin\DataSetUtils.kt

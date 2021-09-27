@@ -51,7 +51,7 @@ fun main() {
             j++
             val real = dataSet.random()
 
-            val fakeIn = Nd4j.randn(batchSize.toLong(), 64, 7, 7)
+            val fakeIn = Nd4j.randn(batchSize.toLong(), 32, 7, 7)
             val fake = gen.output(fakeIn)
 
             val realSet = DataSet(real, Nd4j.ones(batchSize, 1))
@@ -63,7 +63,7 @@ fun main() {
 
             updateGanFromDis(gen, dis, gan)
 
-            gan.fit(DataSet(Nd4j.randn(batchSize.toLong(), 64, 7, 7), Nd4j.ones(batchSize, 1)))
+            gan.fit(DataSet(Nd4j.randn(batchSize.toLong(), 32, 7, 7), Nd4j.ones(batchSize, 1)))
 
             copyParamsToGan(gen, dis, gan)
 
