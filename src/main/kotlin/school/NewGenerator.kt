@@ -76,9 +76,7 @@ val frozenDisLayers = arrayOf(
 
     dropOutLayer(0.4, updater=null),
 
-    convLayer(64, 5, 2, activation = Activation.RELU, convolutionMode = ConvolutionMode.Same, updater = Sgd.builder().learningRate(0.0).build()),
-
-    dropOutLayer(0.4, updater=null),
+    poolingLayer(SubsamplingLayer.PoolingType.MAX),
 
     outputLayer(1, Activation.SIGMOID, LossFunctions.LossFunction.XENT, updater = Sgd.builder().learningRate(0.0).build()),
 )
