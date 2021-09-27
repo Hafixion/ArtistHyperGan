@@ -50,9 +50,13 @@ val disLayers = arrayOf(
 
     dropOutLayer(0.4, updater=null),
 
+    poolingLayer(SubsamplingLayer.PoolingType.MAX),
+
     convLayer(16, 5, 2, activation = Activation.RELU, convolutionMode = ConvolutionMode.Same),
 
     dropOutLayer(0.4, updater=null),
+
+    poolingLayer(SubsamplingLayer.PoolingType.MAX),
 
     convLayer(32, 5, 2, activation = Activation.RELU, convolutionMode = ConvolutionMode.Same),
 
@@ -66,11 +70,15 @@ val disLayers = arrayOf(
 val frozenDisLayers = arrayOf(
     convLayer(8, 5, 2, activation = Activation.RELU, channels = 3, convolutionMode = ConvolutionMode.Same, updater = Sgd.builder().learningRate(0.0).build()),
 
+    poolingLayer(SubsamplingLayer.PoolingType.MAX),
+
     dropOutLayer(0.4, updater=null),
 
     convLayer(16, 5, 2, activation = Activation.RELU, convolutionMode = ConvolutionMode.Same, updater = Sgd.builder().learningRate(0.0).build()),
 
     dropOutLayer(0.4, updater=null),
+
+    poolingLayer(SubsamplingLayer.PoolingType.MAX),
 
     convLayer(32, 5, 2, activation = Activation.RELU, convolutionMode = ConvolutionMode.Same, updater = Sgd.builder().learningRate(0.0).build()),
 
