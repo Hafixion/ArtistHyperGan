@@ -26,9 +26,9 @@ fun main() {
     dis.init()
     gan.init()
 
-    val frame: JFrame = GANVisualizationUtils.initFrame()
-    val numSamples = 12
-    val panel: JPanel = GANVisualizationUtils.initPanel(frame, numSamples)
+//    val frame: JFrame = GANVisualizationUtils.initFrame()
+//    val numSamples = 12
+//    val panel: JPanel = GANVisualizationUtils.initPanel(frame, numSamples)
 
     dis.setListeners(PerformanceListener(1, true))
     gan.setListeners(PerformanceListener(1, true))
@@ -66,14 +66,14 @@ fun main() {
 
         copyParamsToGan(gen, dis, gan)
 
-        println("Iteration $j Visualizing...")
-        val samples = arrayOfNulls<INDArray>(numSamples)
-        val fakeSet2 = DataSet(fakeIn, Nd4j.ones(batchSize, 1))
-        for (k in 0 until numSamples) {
-            val input = fakeSet2[k].features
-            samples[k] = gen.output(input)
-        }
-        GANVisualizationUtils.visualize(samples, frame, panel)
+//        println("Iteration $j Visualizing...")
+//        val samples = arrayOfNulls<INDArray>(numSamples)
+//        val fakeSet2 = DataSet(fakeIn, Nd4j.ones(batchSize, 1))
+//        for (k in 0 until numSamples) {
+//            val input = fakeSet2[k].features
+//            samples[k] = gen.output(input)
+//        }
+//        GANVisualizationUtils.visualize(samples, frame, panel)
 
         ModelSerializer.writeModel(gen, "gen.zip", true)
         ModelSerializer.writeModel(dis, "dis.zip", true)
