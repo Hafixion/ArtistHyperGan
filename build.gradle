@@ -1,0 +1,29 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.5.10'
+    id 'java'
+}
+
+group 'com.shehab'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+String dl4j = "1.0.0-M1"
+
+dependencies {
+    implementation "org.deeplearning4j:deeplearning4j-core:$dl4j"
+    implementation "org.nd4j:nd4j-native:$dl4j"
+    implementation 'ch.qos.logback:logback-classic:1.2.3'
+    implementation "org.nd4j:nd4j-native-platform:$dl4j"
+    // implementation group: 'org.bytedeco', name: 'javacv-platform', version: '1.5.6'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    implementation group: 'org.deeplearning4j', name: 'deeplearning4j-ui', version: dl4j
+}
+
+test {
+    useJUnitPlatform()
+}
