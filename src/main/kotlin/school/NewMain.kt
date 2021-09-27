@@ -1,3 +1,5 @@
+@file:JvmName("Main")
+
 package school
 
 import org.deeplearning4j.datasets.iterator.DataSetIteratorSplitter
@@ -13,6 +15,7 @@ import org.nd4j.linalg.dataset.api.iterator.MultiDataSetIteratorFactory
 import org.nd4j.linalg.factory.Nd4j
 import javax.swing.JFrame
 import javax.swing.JPanel
+
 
 fun main() {
     val gen = MultiLayerNetwork(getGenerator())

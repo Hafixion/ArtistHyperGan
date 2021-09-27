@@ -24,6 +24,11 @@ dependencies {
     implementation group: 'org.deeplearning4j', name: 'deeplearning4j-ui', version: dl4j
 }
 
+task runMain(type: JavaExec) {
+    main = 'school.Main'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
 test {
     useJUnitPlatform()
 }
