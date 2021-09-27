@@ -33,7 +33,7 @@ fun main() {
     dis.setListeners(PerformanceListener(1, true))
     gan.setListeners(PerformanceListener(1, true))
 
-    val batchSize = 100
+    val batchSize = 250
     val dataSetList = mutableListOf<INDArray>()
 
     // creating the dataset
